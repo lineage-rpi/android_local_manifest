@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Raspberry Pi3 -->
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" revision="cm-14.1" />
+    <project path="kernel/rpi" name="android-rpi/kernel_rpi" revision="nougat" />
+    <project path="hardware/rpi" name="lineage-rpi/android_hardware_rpi" revision="cm-14.1" />
+
+    <!-- LineageOS replacements -->
+    <remove-project name="platform/external/mesa3d"/>
+    <remove-project name="platform/external/drm_gralloc"/>
+    <remove-project name="LineageOS/android_frameworks_native"/>
+    <project path="external/mesa3d" name="android-rpi/external_mesa3d" revision="nougat" />
+    <project path="external/drm_gralloc" name="android-rpi/external_drm_gralloc" revision="nougat" />
+    <project path="frameworks/native" name="lineage-rpi/android_frameworks_native" revision="cm-14.1" />
+</manifest>
