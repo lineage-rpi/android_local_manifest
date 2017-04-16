@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-    <!-- Raspberry Pi3 -->
+    <!-- Raspberry Pi 3 -->
     <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" revision="cm-14.1" />
-    <project path="kernel/rpi" name="android-rpi/kernel_rpi" revision="nougat" />
     <project path="hardware/rpi" name="lineage-rpi/android_hardware_rpi" revision="cm-14.1" />
+    <project path="kernel/rpi" name="lineage-rpi/android_kernel_rpi" revision="cm-14.1" />
+    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" revision="cm-14.1" />
 
     <!-- LineageOS replacements -->
     <remove-project name="platform/external/mesa3d"/>
