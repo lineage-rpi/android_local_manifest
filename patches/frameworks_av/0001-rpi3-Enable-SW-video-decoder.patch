@@ -1,0 +1,35 @@
+From 094cdb3316ecfb217049fab5259190ca347dc748 Mon Sep 17 00:00:00 2001
+From: Peter Yoon <peyo.hd@gmail.com>
+Date: Thu, 3 Aug 2017 09:42:25 -0400
+Subject: [PATCH] rpi3: Enable SW video decoder
+
+HW video decoder is not ready yet.
+
+SW mode could be used by applying following patch under frameworks/av
+- with limited size & performance
+
+Change-Id: I586b91c824a7bd7e34d7cfcfc7c2bb8359ebceb3
+---
+ media/libstagefright/colorconversion/SoftwareRenderer.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/media/libstagefright/colorconversion/SoftwareRenderer.cpp b/media/libstagefright/colorconversion/SoftwareRenderer.cpp
+index d31ac58..559d28e 100644
+--- a/media/libstagefright/colorconversion/SoftwareRenderer.cpp
++++ b/media/libstagefright/colorconversion/SoftwareRenderer.cpp
+@@ -112,9 +112,9 @@ void SoftwareRenderer::resetFormatIfChanged(const sp<AMessage> &format) {
+             case OMX_COLOR_FormatYUV420SemiPlanar:
+             case OMX_TI_COLOR_FormatYUV420PackedSemiPlanar:
+             {
+-                halFormat = HAL_PIXEL_FORMAT_YV12;
+-                bufWidth = (mCropWidth + 1) & ~1;
+-                bufHeight = (mCropHeight + 1) & ~1;
++//                halFormat = HAL_PIXEL_FORMAT_YV12;
++//                bufWidth = (mCropWidth + 1) & ~1;
++//                bufHeight = (mCropHeight + 1) & ~1;
+                 break;
+             }
+             case OMX_COLOR_Format24bitRGB888:
+-- 
+2.7.4
+
