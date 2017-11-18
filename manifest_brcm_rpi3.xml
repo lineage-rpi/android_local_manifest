@@ -6,6 +6,9 @@
     <project path="kernel/rpi" name="lineage-rpi/android_kernel_rpi" revision="cm-14.1" />
     <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" revision="cm-14.1" />
 
+    <!-- LineageOS additions -->
+    <project path="external/i2c-tools" name="lineage-rpi/android_external_i2c-tools" revision="cm-14.1" />
+
     <!-- LineageOS replacements -->
     <remove-project name="platform/external/mesa3d"/>
     <remove-project name="platform/external/drm_gralloc"/>
