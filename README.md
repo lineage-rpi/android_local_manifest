@@ -37,7 +37,7 @@ mka ramdisk systemimage
 6. Build Linux kernel:
 
 ```
-cd kernel/rpi
+cd kernel/brcm/rpi3
 make ARCH=arm lineageos_rpi3_defconfig
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage dtbs
 ```
