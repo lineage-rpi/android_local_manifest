@@ -13,7 +13,7 @@
     <remove-project name="platform/external/mesa3d"/>
     <remove-project name="platform/external/drm_gralloc"/>
     <remove-project name="LineageOS/android_frameworks_native"/>
-    <project path="external/mesa3d" name="android-rpi/external_mesa3d" revision="nougat" />
-    <project path="external/drm_gralloc" name="android-rpi/external_drm_gralloc" revision="nougat" />
+    <project path="external/mesa3d" name="lineage-rpi/android_external_mesa3d" revision="cm-14.1" />
+    <project path="external/drm_gralloc" name="lineage-rpi/android_external_drm_gralloc" revision="cm-14.1" />
     <project path="frameworks/native" name="lineage-rpi/android_frameworks_native" revision="cm-14.1" />
 </manifest>
