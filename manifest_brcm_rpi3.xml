@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Raspberry Pi 3 -->
-    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" revision="cm-14.1" />
-    <project path="hardware/rpi3" name="lineage-rpi/android_hardware_rpi3" revision="cm-14.1" />
-    <project path="kernel/brcm/rpi3" name="lineage-rpi/android_kernel_brcm_rpi3" revision="cm-14.1" />
-    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" revision="cm-14.1" />
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" />
+    <project path="hardware/rpi3" name="lineage-rpi/android_hardware_rpi3" />
+    <project path="kernel/brcm/rpi3" name="lineage-rpi/android_kernel_brcm_rpi3" />
+    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" />
 
     <!-- LineageOS additions -->
-    <project path="external/i2c-tools" name="lineage-rpi/android_external_i2c-tools" revision="cm-14.1" />
+    <project path="external/i2c-tools" name="lineage-rpi/android_external_i2c-tools" />
 
     <!-- LineageOS replacements -->
     <remove-project name="platform/external/mesa3d"/>
     <remove-project name="platform/external/drm_gralloc"/>
     <remove-project name="LineageOS/android_frameworks_native"/>
-    <project path="external/mesa3d" name="lineage-rpi/android_external_mesa3d" revision="cm-14.1" />
-    <project path="external/drm_gralloc" name="lineage-rpi/android_external_drm_gralloc" revision="cm-14.1" />
-    <project path="frameworks/native" name="lineage-rpi/android_frameworks_native" revision="cm-14.1" />
+    <project path="external/mesa3d" name="lineage-rpi/android_external_mesa3d" />
+    <project path="external/drm_gralloc" name="lineage-rpi/android_external_drm_gralloc" />
+    <project path="frameworks/native" name="lineage-rpi/android_frameworks_native" />
 </manifest>
