@@ -8,7 +8,7 @@ How to build:
 2. Install additional packages:
 
 ```
-sudo apt-get install gcc-arm-linux-gnueabihf kpartx python-mako
+sudo apt-get install kpartx python-mako
 ```
 
 3. Initialize repo:
@@ -26,23 +26,15 @@ cd path/to/project
 git am patchname.patch
 ```
 
-5. Compile Android:
+5. Compile:
 
 ```
 . build/envsetup.sh
 lunch lineage_rpi3-userdebug
-mka ramdisk systemimage
+mka kernel ramdisk systemimage
 ```
 
-6. Build Linux kernel:
-
-```
-cd kernel/brcm/rpi3
-make ARCH=arm lineageos_rpi3_defconfig
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage dtbs
-```
-
-7. Create writable image:
+6. Create writable image:
 
 ```
 cd device/brcm/rpi3
