@@ -1,0 +1,31 @@
+From 868e7fa1c9526b9f2b335c830f2d9d8e5078cd7d Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sat, 27 Jul 2013 15:03:04 +0300
+Subject: [PATCH] disable adb authentication by default
+
+This reverts commit 59df363c6097eb4c8b53c1b952d7384a567bafac.
+
+Change-Id: Ia7317c8a6afac799c047ea6d594d7ccd17e569c0
+---
+ config/common.mk | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/config/common.mk b/config/common.mk
+index 12f6262..5468332 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -26,11 +26,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
+ PRODUCT_PROPERTY_OVERRIDES += persist.sys.dun.override=0
+ endif
+ 
+-ifneq ($(TARGET_BUILD_VARIANT),eng)
+-# Enable ADB authentication
+-ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
+-endif
+-
+ # Backup Tool
+ PRODUCT_COPY_FILES += \
+     vendor/cm/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+-- 
+2.7.4
+
