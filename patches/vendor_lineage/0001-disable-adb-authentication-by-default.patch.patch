@@ -1,0 +1,31 @@
+From 615897c26131fb343994180617196ebd60d6af06 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sat, 27 Jul 2013 15:03:04 +0300
+Subject: [PATCH] disable adb authentication by default
+
+This reverts commit 59df363c6097eb4c8b53c1b952d7384a567bafac.
+
+Change-Id: Ia7317c8a6afac799c047ea6d594d7ccd17e569c0
+---
+ config/common.mk | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/config/common.mk b/config/common.mk
+index 70360c9..f65bce1 100644
+--- a/config/common.mk
++++ b/config/common.mk
+@@ -26,11 +26,6 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
+ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += persist.sys.dun.override=0
+ endif
+ 
+-ifneq ($(TARGET_BUILD_VARIANT),eng)
+-# Enable ADB authentication
+-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.adb.secure=1
+-endif
+-
+ ifeq ($(BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE),)
+   PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+     ro.device.cache_dir=/data/cache
+-- 
+2.7.4
+
