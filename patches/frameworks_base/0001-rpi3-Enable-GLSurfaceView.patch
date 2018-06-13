@@ -1,7 +1,7 @@
-From eb84a6f0f6eb12221ad7bd26ff7fcaa8b8fd76a9 Mon Sep 17 00:00:00 2001
+From 6f9a22899c6734bde934b2e483fe061e0d61ce14 Mon Sep 17 00:00:00 2001
 From: Peter Yoon <peyo.hd@gmail.com>
 Date: Thu, 3 Aug 2017 09:29:52 -0400
-Subject: [PATCH] rpi3: Enable GLSurfaceView
+Subject: [PATCH 1/2] rpi3: Enable GLSurfaceView
 
 Currently mesa3d vc4 build is supporting only following formats.
 
