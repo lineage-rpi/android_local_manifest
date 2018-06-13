@@ -1,0 +1,45 @@
+From d5c00cff59a120a7b24b2377e7ff715206c3e179 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sun, 15 Apr 2018 13:43:27 +0300
+Subject: [PATCH] rpi3: modify generic keyboard layout
+
+Change-Id: I838fefac86606f3f881bf83450f81db4cfe689e2
+---
+ data/keyboards/Generic.kl | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/data/keyboards/Generic.kl b/data/keyboards/Generic.kl
+index 2a10bdd..b836ee3 100644
+--- a/data/keyboards/Generic.kl
++++ b/data/keyboards/Generic.kl
+@@ -78,11 +78,11 @@ key 55    NUMPAD_MULTIPLY
+ key 56    ALT_LEFT
+ key 57    SPACE
+ key 58    CAPS_LOCK
+-key 59    F1
+-key 60    F2
+-key 61    F3
+-key 62    F4
+-key 63    F5
++key 59    HOME
++key 60    BACK
++key 61    APP_SWITCH
++key 62    MENU
++key 63    POWER
+ key 64    F6
+ key 65    F7
+ key 66    F8
+@@ -106,8 +106,8 @@ key 83    NUMPAD_DOT
+ # key 84 (undefined)
+ key 85    ZENKAKU_HANKAKU
+ key 86    BACKSLASH
+-key 87    F11
+-key 88    F12
++key 87    VOLUME_DOWN
++key 88    VOLUME_UP
+ key 89    RO
+ # key 90 "KEY_KATAKANA"
+ # key 91 "KEY_HIRAGANA"
+-- 
+2.7.4
+
