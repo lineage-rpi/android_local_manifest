@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
     <!-- Raspberry Pi 3 -->
-    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" />
-    <project path="kernel/brcm/rpi3" name="lineage-rpi/android_kernel_brcm_rpi3" />
-    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" />
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" revision="lineage-15.1-4.4" />
+    <project path="kernel/brcm/rpi3" name="lineage-rpi/android_kernel_brcm_rpi3" revision="lineage-15.1-4.4" />
+    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" revision="lineage-15.1-4.4" />
 
     <!-- LineageOS additions -->
     <project path="external/i2c-tools" name="lineage-rpi/android_external_i2c-tools" />
