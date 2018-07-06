@@ -7,4 +7,8 @@
 
     <!-- LineageOS additions -->
     <project path="external/i2c-tools" name="lineage-rpi/android_external_i2c-tools" />
+
+    <!-- LineageOS replacements -->
+    <remove-project name="platform/external/swiftshader"/>
+    <project path="external/swiftshader" name="lineage-rpi/android_external_swiftshader" />
 </manifest>
