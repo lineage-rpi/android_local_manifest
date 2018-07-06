@@ -1,63 +1,32 @@
-## Submitting Patches ##
-------------------
-Our project is open source, and patches are always welcome!
-You can send patches by using:
+Manifests to build TWRP for [Raspberry Pi 3](http://konstakang.com/devices/rpi3/TWRP).
 
-Pull request, right here on git.
+How to build:
+-------------
 
-Contact @lj50036 on irc, Network: freenode, Channel: #twrp
+1. Set up [Android build environment](https://source.android.com/setup/initializing).
 
+2. Initialize repo:
 
-## Maintaining Authorship ##
-----------------------
-Maintaining authorship is a very important aspect of working with Open Source code. If you wish to submit a patch/fix
-from anywhere else (another ROM, project, etc.), it is imperative that you maintain the ownership of the person whose
-work you are seeking to include. Doing so will ensure that credit is given where it is deserved, and the [prinicples of open source](http://opensource.org/docs/osd)
-are upheld. Your contribution to the project will still be recognized as you will forever be listed as the committer.
-
-If you manually cherry pick a patch/fix then you will need to add the original author prior to pushing to our [gerrit](https://gerrit.omnirom.org).
-This is a very easy task to perform, and is usually done after you commit a patch/fix locally. This is accomplished
-after you type in `git commit -a` , type in the commit message and save. You would then do the following:
-
-```bash
-git commit --amend --author "Author <email@address.com>"
+```
+repo init -u git://github.com/lineage-rpi/android_local_manifest.git -b twrp-8.1
+curl --create-dirs -L -o .repo/local_manifests/manifest_brcm_rpi3.xml -O -L https://raw.githubusercontent.com/lineage-rpi/android_local_manifest/twrp-8.1/manifest_brcm_rpi3.xml
+repo sync
 ```
 
-So it should look like this once you get all of the author's information
+3. Apply [patches](https://github.com/lineage-rpi/android_local_manifest/tree/twrp-8.1/patches):
 
-```bash
-git commit --amend --author "Spencer McGillicuddy <spencer.the.bestest@gmail.com>"
+```
+cd path/to/project
+git am patchname.patch
 ```
 
-Alternatively, adding as part of the original `git commit` message is preferred and done like the following:
+4. Compile:
 
-```bash
-git commit --author="Author <email@address.com>" -m "[commit message]"
+```
+export ALLOW_MISSING_DEPENDENCIES=true
+. build/envsetup.sh
+lunch omni_rpi3-userdebug
+mka ramdisk-recovery
 ```
 
-This saves time, and when part of your normal routine, prevents the infamous "ermahgerd I forgot to add authorship -
-let me fix it because I was found out!" message.
-
-
-## Getting Started ##
----------------
-
-To get started with OMNI sources to build TWRP, you'll need to get
-familiar with [Git and Repo](https://source.android.com/source/using-repo.html).
-
-To initialize your local repository using the OMNIROM trees to build TWRP, use a command like this:
-
-    repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-8.1
-    
-To initialize a shallow clone, which will save even more space, use a command like this:
-
-    repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-8.1
-
-Then to sync up:
-
-    repo sync
-
-Then to build:
-
-     cd <source-dir>; export ALLOW_MISSING_DEPENDENCIES=true; . build/envsetup.sh; lunch omni_<device>-eng; mka recoveryimage
-
+5. Copy ramdisk-recovery.img as ramdisk.img in [LineageOS 15.1](http://konstakang.com/devices/rpi3/LineageOS15.1) boot partition (/dev/block/mmcblk0p1).

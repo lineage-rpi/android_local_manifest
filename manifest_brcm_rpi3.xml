@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Raspberry Pi 3 -->
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" remote="github" revision="twrp-8.1" />
+</manifest>
