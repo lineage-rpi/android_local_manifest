@@ -1,0 +1,42 @@
+From cc48d6752cf06ee18b2c6013f25c074e83f1775f Mon Sep 17 00:00:00 2001
+From: Andy Ross <andy.ross@windriver.com>
+Date: Tue, 15 Jan 2013 15:05:38 -0800
+Subject: [PATCH 2/3] rpi3: GLSurfaceView: Be less picky about EGLConfig alpha
+ sizes
+
+EGLChooseConfig returns a "best match" set of visuals meeting or
+exceeding the required r/g/b/a component depths.  But GLSurfaceView
+oddly requires that the returned visual be an exact match.  Add to
+that that the (rarely used outside of CTS) default request specifies
+zero alpha bits and that not all drivers expose a zero-alpha
+EGLConfig, and the default configuration will fail needlessly.
+
+It's not incorrect to have alpha bits you didn't request: the only way
+to produce divergent behavior is for a fragment shader to write out
+explicit alpha values (into the channel it didn't want to begin with!)
+with values other than 1.0 and then rely on them being ignored and
+treated as 1.0.
+
+For: AXIA-1448
+Change-Id: I2f64995d7b9de1ae082aa47822af525390102083
+Signed-off-by: Andy Ross <andy.ross@windriver.com>
+---
+ opengl/java/android/opengl/GLSurfaceView.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/opengl/java/android/opengl/GLSurfaceView.java b/opengl/java/android/opengl/GLSurfaceView.java
+index 08d31c1..0a2f01d 100644
+--- a/opengl/java/android/opengl/GLSurfaceView.java
++++ b/opengl/java/android/opengl/GLSurfaceView.java
+@@ -958,7 +958,7 @@ public class GLSurfaceView extends SurfaceView implements SurfaceHolder.Callback
+                     int a = findConfigAttrib(egl, display, config,
+                             EGL10.EGL_ALPHA_SIZE, 0);
+                     if ((r == mRedSize) && (g == mGreenSize)
+-                            && (b == mBlueSize) && (a == mAlphaSize)) {
++                            && (b == mBlueSize) && (a >= mAlphaSize)) {
+                         return config;
+                     }
+                 }
+-- 
+2.7.4
+

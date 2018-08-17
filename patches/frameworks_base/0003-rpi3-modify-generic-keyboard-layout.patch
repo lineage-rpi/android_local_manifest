@@ -1,7 +1,7 @@
-From 5cb640904a9f7685377a1d4f5e781ca855ed4f45 Mon Sep 17 00:00:00 2001
+From 14ba60882dff6a44635530f78632f310bacdd9a0 Mon Sep 17 00:00:00 2001
 From: Konsta <konsta09@gmail.com>
 Date: Sun, 15 Apr 2018 13:43:27 +0300
-Subject: [PATCH 2/2] rpi3: modify generic keyboard layout
+Subject: [PATCH 3/3] rpi3: modify generic keyboard layout
 
 Change-Id: I838fefac86606f3f881bf83450f81db4cfe689e2
 ---
