@@ -1,0 +1,125 @@
+From 5fc5cb9b7c4208390a6c592ef566ae6a0d0b2337 Mon Sep 17 00:00:00 2001
+From: nailyk-fr <nailyk_git@nailyk.fr>
+Date: Tue, 8 Aug 2017 21:23:35 +0200
+Subject: [PATCH 1/2] TWRP: add an option to exclude the TWRP app
+
+ * Allow device maintainer to exclude the twrp app and disable
+   the installation prompt. Mostly the app is useless for
+   every unofficially supported devices.
+
+ * BoardConfig flag: 'TW_EXCLUDE_TWRPAPP := true'
+
+Original commit: https://gerrit.omnirom.org/#/c/android_bootable_recovery/+/27694/
+
+Change-Id: I0aa1fb2ebe03ceb19c766178544039a82497cdd4
+---
+ Android.mk                     |  4 ++++
+ data.cpp                       |  4 ++++
+ gui/theme/common/landscape.xml |  1 +
+ gui/theme/common/portrait.xml  |  1 +
+ gui/theme/common/watch.xml     |  1 +
+ prebuilt/Android.mk            | 18 ++++++++++--------
+ 6 files changed, 21 insertions(+), 8 deletions(-)
+
+diff --git a/Android.mk b/Android.mk
+index 7ffcd70a..0386dcb0 100755
+--- a/Android.mk
++++ b/Android.mk
+@@ -398,6 +398,10 @@ endif
+ ifneq ($(TW_CLOCK_OFFSET),)
+ 	LOCAL_CFLAGS += -DTW_CLOCK_OFFSET=$(TW_CLOCK_OFFSET)
+ endif
++ifeq ($(TW_EXCLUDE_TWRPAPP),true)
++    LOCAL_CFLAGS += -DTW_EXCLUDE_TWRPAPP
++endif
++
+ TWRP_REQUIRED_MODULES += \
+     dump_image \
+     erase_image \
+diff --git a/data.cpp b/data.cpp
+index 088dbda6..d781e8a8 100755
+--- a/data.cpp
++++ b/data.cpp
+@@ -912,10 +912,14 @@ void DataManager::SetDefaultValues()
+ 	mConst.SetValue("tw_app_installed_in_system", "0");
+ #else
+ 	mConst.SetValue("tw_oem_build", "0");
++  #ifdef TW_EXCLUDE_TWRPAPP
++	mConst.SetValue("tw_app_prompt", "-1");
++  #else
+ 	mPersist.SetValue("tw_app_prompt", "1");
+ 	mPersist.SetValue("tw_app_install_system", "1");
+ 	mData.SetValue("tw_app_install_status", "0"); // 0 = no status, 1 = not installed, 2 = already installed
+ 	mData.SetValue("tw_app_installed_in_system", "0");
++  #endif
+ #endif
+ 
+ 	mData.SetValue("tw_enable_adb_backup", "0");
+diff --git a/gui/theme/common/landscape.xml b/gui/theme/common/landscape.xml
+index 8244c461..b3fa66cb 100755
+--- a/gui/theme/common/landscape.xml
++++ b/gui/theme/common/landscape.xml
+@@ -2924,6 +2924,7 @@
+ 					<data variable="tw_military_time"/>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_prompt_install=Prompt to install TWRP app on every reboot}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<data variable="tw_app_prompt"/>
+ 				</listitem>
+ 				<listitem name="{@simact_chk=Simulate actions for theme testing}">
+diff --git a/gui/theme/common/portrait.xml b/gui/theme/common/portrait.xml
+index e014cc53..69d6de78 100755
+--- a/gui/theme/common/portrait.xml
++++ b/gui/theme/common/portrait.xml
+@@ -3137,6 +3137,7 @@
+ 					<data variable="tw_samsung_navbar"/>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_prompt_install=Prompt to install TWRP app on every reboot}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<data variable="tw_app_prompt"/>
+ 				</listitem>
+ 				<listitem name="{@simact_chk=Simulate actions for theme testing}">
+diff --git a/gui/theme/common/watch.xml b/gui/theme/common/watch.xml
+index f5d32228..04014727 100755
+--- a/gui/theme/common/watch.xml
++++ b/gui/theme/common/watch.xml
+@@ -3627,6 +3627,7 @@
+ 					<data variable="tw_military_time"/>
+ 				</listitem>
+ 				<listitem name="{@reboot_install_app_prompt_install=Prompt to install TWRP app on every reboot}">
++					<condition var1="tw_app_prompt" op="!=" var2="-1"/>
+ 					<data variable="tw_app_prompt"/>
+ 				</listitem>
+ 				<listitem name="{@simact_chk=Simulate actions for theme testing}">
+diff --git a/prebuilt/Android.mk b/prebuilt/Android.mk
+index 5c0b4419..3b306b53 100644
+--- a/prebuilt/Android.mk
++++ b/prebuilt/Android.mk
+@@ -549,14 +549,16 @@ ifeq ($(TW_USE_TOOLBOX), true)
+     include $(BUILD_PREBUILT)
+ endif
+ 
+-#TWRP App "placeholder"
+-include $(CLEAR_VARS)
+-LOCAL_MODULE := me.twrp.twrpapp.apk
+-LOCAL_MODULE_TAGS := eng
+-LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
+-LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
+-LOCAL_SRC_FILES := $(LOCAL_MODULE)
+-include $(BUILD_PREBUILT)
++ifneq ($(TW_EXCLUDE_TWRPAPP),true)
++	#TWRP App "placeholder"
++	include $(CLEAR_VARS)
++	LOCAL_MODULE := me.twrp.twrpapp.apk
++	LOCAL_MODULE_TAGS := eng
++	LOCAL_MODULE_CLASS := RECOVERY_EXECUTABLES
++	LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
++	LOCAL_SRC_FILES := $(LOCAL_MODULE)
++	include $(BUILD_PREBUILT)
++endif
+ 
+ ifeq ($(TW_INCLUDE_CRYPTO), true)
+     ifneq ($(TW_CRYPTO_USE_SYSTEM_VOLD),)
+-- 
+2.17.1
+

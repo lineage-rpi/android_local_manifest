@@ -1,0 +1,26 @@
+From 95888897f7973aed51f339e0939516e1a63aa2c7 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Tue, 26 Mar 2019 09:40:24 +0200
+Subject: [PATCH 2/2] fix wipe dalvik button placement
+
+Change-Id: I25fbee89f94227f01927b55a5d0c9ad738ce3cfd
+---
+ gui/theme/common/landscape.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gui/theme/common/landscape.xml b/gui/theme/common/landscape.xml
+index b3fa66cb..768f4216 100755
+--- a/gui/theme/common/landscape.xml
++++ b/gui/theme/common/landscape.xml
+@@ -557,7 +557,7 @@
+ 
+ 			<button style="main_button_half_width">
+ 				<condition var1="tw_ab_device" var2="1"/>
+-				<placement x="%indent%" y="%row21a_y%"/>
++				<placement x="%col2_x_left%" y="%row15a_y%"/>
+ 				<text>{@wipe_dalvik_btn=Wipe Dalvik}</text>
+ 				<actions>
+ 					<action function="set">tw_back=flash_done</action>
+-- 
+2.17.1
+
