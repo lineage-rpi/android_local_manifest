@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Raspberry Pi -->
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" />
+    <project path="device/brcm/rpi4" name="lineage-rpi/android_device_brcm_rpi4" />
+    <project path="device/brcm/rpi-common" name="lineage-rpi/android_device_brcm_rpi-common" revision="lineage-16.0-twrp" />
+    <project path="kernel/brcm/rpi" name="lineage-rpi/android_kernel_brcm_rpi" />
+    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" />
+
+    <!-- TWRP -->
+    <remove-project name="LineageOS/android_bootable_recovery" />
+    <project path="bootable/recovery" name="TeamWin/android_bootable_recovery" revision="android-9.0" />
+</manifest>

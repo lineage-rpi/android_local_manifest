@@ -1,0 +1,27 @@
+From 576d389ebb8c157f2994b497392e06be1a5a1711 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sun, 19 Nov 2017 19:40:27 +0200
+Subject: [PATCH] build recovery ramdisk
+
+Change-Id: I968ff15c2491d38054150bd02a6d424a976ca931
+---
+ core/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/core/Makefile b/core/Makefile
+index 404bb5413..8e64ea126 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -1590,6 +1590,9 @@ else # INSTALLED_RECOVERYIMAGE_TARGET not defined
+ RECOVERY_RESOURCE_ZIP :=
+ endif
+ 
++.PHONY: ramdisk-recovery
++ramdisk-recovery: $(recovery_ramdisk)
++
+ .PHONY: recoveryimage
+ recoveryimage: $(INSTALLED_RECOVERYIMAGE_TARGET) $(RECOVERY_RESOURCE_ZIP)
+ 
+-- 
+2.17.1
+
