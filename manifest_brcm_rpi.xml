@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- Raspberry Pi -->
+    <project path="device/brcm/rpi3" name="lineage-rpi/android_device_brcm_rpi3" />
+    <project path="device/brcm/rpi4" name="lineage-rpi/android_device_brcm_rpi4" />
+    <project path="device/brcm/rpi-common" name="lineage-rpi/android_device_brcm_rpi-common" />
+    <project path="kernel/brcm/rpi" name="lineage-rpi/android_kernel_brcm_rpi" />
+    <project path="kernel/brcm/rpi-4.19" name="lineage-rpi/android_kernel_brcm_rpi" revision="lineage-17.1-4.19" />
+    <project path="vendor/brcm" name="lineage-rpi/proprietary_vendor_brcm" />
+
+    <!-- Graphics -->
+    <remove-project name="platform/external/drm_hwcomposer" />
+    <remove-project name="platform/external/libdrm" />
+    <remove-project name="platform/external/mesa3d" />
+    <remove-project name="platform/external/minigbm" />
+    <project path="external/drm_hwcomposer" name="lineage-rpi/android_external_drm_hwcomposer" />
+    <project path="external/gbm_gralloc" name="lineage-rpi/android_external_gbm_gralloc" />
+    <project path="external/libdrm" name="lineage-rpi/android_external_libdrm" />
+    <project path="external/mesa3d" name="lineage-rpi/android_external_mesa3d" />
+    <project path="external/minigbm" name="lineage-rpi/android_external_minigbm" />
+
+    <!-- Misc additions -->
+    <project path="external/ir-keytable" name="lineage-rpi/android_external_ir-keytable" />
+    <project path="hardware/gps" name="lineage-rpi/android_hardware_gps" />
+</manifest>
