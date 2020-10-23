@@ -1,7 +1,7 @@
-From 4d476ea394479db2ecbfcd9702d702250243956c Mon Sep 17 00:00:00 2001
+From af1674d5f7ec9b9fa8ed82093fdfe7b9d7aa959f Mon Sep 17 00:00:00 2001
 From: Konsta <konsta09@gmail.com>
 Date: Tue, 26 Mar 2019 09:40:24 +0200
-Subject: [PATCH 2/2] fix dalvik button placement
+Subject: [PATCH 2/3] fix dalvik button placement
 
 Change-Id: I25fbee89f94227f01927b55a5d0c9ad738ce3cfd
 ---

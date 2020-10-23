@@ -1,7 +1,7 @@
-From 1de26144cb1678ee07ce3a46fe946cc4d678c1b1 Mon Sep 17 00:00:00 2001
+From 37f6acae10ac38f77da6e757465a62e5e59c9658 Mon Sep 17 00:00:00 2001
 From: nailyk-fr <nailyk_git@nailyk.fr>
 Date: Tue, 8 Aug 2017 21:23:35 +0200
-Subject: [PATCH 1/2] TWRP: add an option to exclude the TWRP app
+Subject: [PATCH 1/3] TWRP: add an option to exclude the TWRP app
 
  * Allow device maintainer to exclude the twrp app and disable
    the installation prompt. Mostly the app is useless for
@@ -22,10 +22,10 @@ Change-Id: I0aa1fb2ebe03ceb19c766178544039a82497cdd4
  6 files changed, 20 insertions(+), 8 deletions(-)
 
 diff --git a/Android.mk b/Android.mk
-index af49367f..bb778106 100755
+index 2725a0bb..e4459167 100755
 --- a/Android.mk
 +++ b/Android.mk
-@@ -424,6 +424,9 @@ ifneq ($(TW_INCLUDE_LIBRESETPROP),)
+@@ -425,6 +425,9 @@ ifneq ($(TW_INCLUDE_LIBRESETPROP),)
          LOCAL_CFLAGS += -DTW_INCLUDE_LIBRESETPROP
      endif
  endif
@@ -36,10 +36,10 @@ index af49367f..bb778106 100755
  TWRP_REQUIRED_MODULES += \
      dump_image \
 diff --git a/data.cpp b/data.cpp
-index bf6e33bc..8294336a 100755
+index e6f1ac0c..bc3aff92 100755
 --- a/data.cpp
 +++ b/data.cpp
-@@ -951,10 +951,14 @@ void DataManager::SetDefaultValues()
+@@ -904,10 +904,14 @@ void DataManager::SetDefaultValues()
  	mConst.SetValue("tw_app_installed_in_system", "0");
  #else
  	mConst.SetValue("tw_oem_build", "0");
