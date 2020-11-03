@@ -9,5 +9,5 @@
 
     <!-- TWRP -->
     <remove-project name="LineageOS/android_bootable_recovery" />
-    <project path="bootable/recovery" name="TeamWin/android_bootable_recovery" revision="android-9.0" />
+    <project path="bootable/recovery" name="lineage-rpi/android_bootable_recovery" revision="android-9.0" />
 </manifest>
