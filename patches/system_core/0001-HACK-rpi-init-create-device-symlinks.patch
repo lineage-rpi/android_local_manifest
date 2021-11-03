@@ -1,0 +1,57 @@
+From f188b040577dacb6ff981ddcfe1598e06ebb9961 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Fri, 23 Oct 2020 09:01:48 +0300
+Subject: [PATCH] HACK: rpi: init: create device symlinks
+
+Change-Id: Ie0d2ef32c08deedb56e50df6bfff4724e641af6b
+---
+ init/devices.cpp | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/init/devices.cpp b/init/devices.cpp
+index 9fbec64..9153738 100644
+--- a/init/devices.cpp
++++ b/init/devices.cpp
+@@ -312,6 +312,31 @@ void SanitizePartitionName(std::string* string) {
+     }
+ }
+ 
++void create_device_symlinks(const Uevent& uevent, std::vector<std::string>& links)
++{
++    static const std::string bootdevice_path = "/proc/device-tree/firmware/android/bootdevice";
++    std::string bootdevice;
++    if (!ReadFileToString(bootdevice_path, &bootdevice)) {
++        LOG(ERROR) << "create_device_symlinks: failed to read boot device from " << bootdevice_path;
++    }
++
++    LOG(INFO) << "create_device_symlinks: device " << uevent.device_name;
++
++    if ((uevent.device_name.compare("mmcblk0p1") == 0 && bootdevice.compare(0, 6, "sdcard") == 0)
++            || (uevent.device_name.compare("sda1") == 0 && bootdevice.compare(0, 3, "usb") == 0)) {
++        links.emplace_back("/dev/block/by-name/boot");
++    } else if ((uevent.device_name.compare("mmcblk0p2") == 0 && bootdevice.compare(0, 6, "sdcard") == 0)
++            || (uevent.device_name.compare("sda2") == 0 && bootdevice.compare(0, 3, "usb") == 0)) {
++        links.emplace_back("/dev/block/by-name/system");
++    } else if ((uevent.device_name.compare("mmcblk0p3") == 0 && bootdevice.compare(0, 6, "sdcard") == 0)
++            || (uevent.device_name.compare("sda3") == 0 && bootdevice.compare(0, 3, "usb") == 0)) {
++        links.emplace_back("/dev/block/by-name/vendor");
++    } else if ((uevent.device_name.compare("mmcblk0p4") == 0 && bootdevice.compare(0, 6, "sdcard") == 0)
++            || (uevent.device_name.compare("sda4") == 0 && bootdevice.compare(0, 3, "usb") == 0)) {
++        links.emplace_back("/dev/block/by-name/userdata");
++    }
++}
++
+ std::vector<std::string> DeviceHandler::GetBlockDeviceSymlinks(const Uevent& uevent) const {
+     std::string device;
+     std::string type;
+@@ -368,6 +393,7 @@ std::vector<std::string> DeviceHandler::GetBlockDeviceSymlinks(const Uevent& uev
+         // symlink of /dev/block/by-name/<device_name> for symmetry.
+         links.emplace_back("/dev/block/by-name/" + uevent.device_name);
+     }
++    create_device_symlinks(uevent, links);
+ 
+     auto last_slash = uevent.path.rfind('/');
+     links.emplace_back(link_path + "/" + uevent.path.substr(last_slash + 1));
+-- 
+2.17.1
+

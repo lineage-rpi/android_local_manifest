@@ -1,0 +1,27 @@
+From a0a5462b10266222367bc39f0b8b7edd5c84d480 Mon Sep 17 00:00:00 2001
+From: Konsta <konsta09@gmail.com>
+Date: Sun, 19 Nov 2017 19:40:27 +0200
+Subject: [PATCH] add target to build recovery ramdisk
+
+Change-Id: I968ff15c2491d38054150bd02a6d424a976ca931
+---
+ core/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/core/Makefile b/core/Makefile
+index 4ee6406..a9bd78c 100644
+--- a/core/Makefile
++++ b/core/Makefile
+@@ -2321,6 +2321,9 @@ else # BUILDING_RECOVERY_IMAGE
+ RECOVERY_RESOURCE_ZIP :=
+ endif # BUILDING_RECOVERY_IMAGE
+ 
++.PHONY: ramdisk-recovery
++ramdisk-recovery: $(recovery_ramdisk)
++
+ .PHONY: recoveryimage
+ recoveryimage: $(INSTALLED_RECOVERYIMAGE_TARGET) $(RECOVERY_RESOURCE_ZIP)
+ 
+-- 
+2.17.1
+

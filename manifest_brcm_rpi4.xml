@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- TWRP -->
+    <remove-project name="android_bootable_recovery" />
+    <project path="bootable/recovery" name="lineage-rpi/android_bootable_recovery" remote="github" revision="android-11"/>
+
+    <!-- Raspberry Pi 4 -->
+    <project path="device/brcm/rpi4" name="lineage-rpi/android_device_brcm_rpi4" remote="github" revision="twrp-11" />
+</manifest>
