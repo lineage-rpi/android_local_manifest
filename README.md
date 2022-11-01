@@ -8,7 +8,7 @@ How to build:
 2. Initialize repo:
 
 ```
-repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
+repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-11 --depth=1
 curl --create-dirs -L -o .repo/local_manifests/manifest_brcm_rpi4.xml -O -L https://raw.githubusercontent.com/lineage-rpi/android_local_manifest/twrp-11/manifest_brcm_rpi4.xml
 repo sync
 ```
